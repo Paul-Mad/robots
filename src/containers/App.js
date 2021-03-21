@@ -31,7 +31,7 @@ class App extends Component {
 
   getRobots = async () => {
     try {
-      const res = await fetch("http://jsonplaceholder.typicode.com/users");
+      const res = await fetch("https://jsonplaceholder.typicode.com/users");
       const data = await res.json();
 
       this.setState({ robots: data });
