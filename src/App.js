@@ -16,6 +16,7 @@ class App extends Component {
     //Using async/await
     this.getRobots();
 
+    //Using consuming promisses
     // fetch("http://jsonplaceholder.typicode.com/users")
     //   .then((res) => res.json())
     //   .then((data) =>
@@ -47,13 +48,16 @@ class App extends Component {
   render() {
     const filteredRobots = this.state.robots.filter(this.dataFilter);
 
-    return (
-      <div className="tc">
-        <h1 className="f2">RoboFriends</h1>
-        <SearchBox onSearchChange={this.onSearchChange} />
-        <CardList filteredRobots={filteredRobots} />
-      </div>
-    );
+    if (this.state.robots.length === 0)
+      return <h1 className="f2">Loading...</h1>;
+    else
+      return (
+        <div className="tc">
+          <h1 className="f2">RoboFriends</h1>
+          <SearchBox onSearchChange={this.onSearchChange} />
+          <CardList filteredRobots={filteredRobots} />
+        </div>
+      );
   }
 }
 
