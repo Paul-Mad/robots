@@ -1,17 +1,41 @@
 import React, { Component } from "react";
 import SearchBox from "./SearchBox";
 import CardList from "./CardList";
-import { robots } from "./Robots";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      robots: robots,
+      robots: [],
       searchfield: "",
     };
   }
+
+  componentDidMount() {
+    //Using async/await
+    this.getRobots();
+
+    // fetch("http://jsonplaceholder.typicode.com/users")
+    //   .then((res) => res.json())
+    //   .then((data) =>
+    //     this.setState({
+    //       robots: data,
+    //     })
+    //   )
+    //   .catch((error) => console.error(error));
+  }
+
+  getRobots = async () => {
+    try {
+      const res = await fetch("http://jsonplaceholder.typicode.com/users");
+      const data = await res.json();
+
+      this.setState({ robots: data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   onSearchChange = (e) => {
     this.setState({ searchfield: e.target.value });
