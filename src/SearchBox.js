@@ -13,7 +13,6 @@ class SearchBox extends Component {
           type="search"
           placeholder="search robots"
           name="searchfield"
-          value={this.props.state.searchfield}
           onChange={(e) => this.props.onSearchChange(e)}
         />
       </div>

@@ -10,23 +10,23 @@ class App extends Component {
       robots: robots,
       searchfield: "",
     };
-
-    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
-  onSearchChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
+  onSearchChange = (e) => {
+    this.setState({ searchfield: e.target.value });
+  };
 
-    this.setState({ [name]: value });
-  }
+  dataFilter = (item) =>
+    item.name.toLowerCase().match(this.state.searchfield.toLowerCase()) && true;
 
   render() {
+    const filteredRobots = this.state.robots.filter(this.dataFilter);
+
     return (
       <div className="tc">
         <h1>RoboFriends</h1>
-        <SearchBox state={this.state} onSearchChange={this.onSearchChange} />
-        <CardList state={this.state} />
+        <SearchBox onSearchChange={this.onSearchChange} />
+        <CardList filteredRobots={filteredRobots} />
       </div>
     );
   }

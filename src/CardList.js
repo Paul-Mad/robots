@@ -6,18 +6,10 @@ class CardList extends Component {
     super(props);
   }
 
-  componentDidMount() {}
   render() {
-    const dataFilter = (item) =>
-      item.name
-        .toLowerCase()
-        .match(this.props.state.searchfield.toLowerCase()) && true;
-
-    const filteredRobots = this.props.state.robots.filter(dataFilter);
-
     return (
       <div>
-        {filteredRobots.map((user) => (
+        {this.props.filteredRobots.map((user) => (
           <Card
             key={user.id}
             id={user.id}
