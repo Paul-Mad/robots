@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBox from "../components/SearchBox";
 import CardList from "../components/CardList";
 import Scroll from "../components/Scroll";
@@ -13,13 +13,11 @@ const App = () => {
     //Using async/await
     getRobots();
 
-    //Using consuming promisses
+    //Consuming promisses
     // fetch("http://jsonplaceholder.typicode.com/users")
     //   .then((res) => res.json())
     //   .then((data) =>
-    //     this.setState({
-    //       robots: data,
-    //     })
+    //     setRobots(data);
     //   )
     //   .catch((error) => console.error(error));
   }, []);
