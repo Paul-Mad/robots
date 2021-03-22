@@ -1,48 +1,49 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import SearchBox from "../components/SearchBox";
 import CardList from "../components/CardList";
 import Scroll from "../components/Scroll";
 import Error from "../components/Error";
 import "./App.css";
+import { setSearchField, getRobots } from "../actions";
 
-const App = () => {
-  const [robots, setRobots] = useState([]);
-  const [searchfield, setSearchfield] = useState("");
+const mapStateToProps = (state) => {
+  return {
+    searchField: state.searchRobots.searchField,
+    robots: state.getRobots.robots,
+    isPending: state.getRobots.isPending,
+    error: state.getRobots.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onGetRobots: () => dispatch(getRobots()),
+  };
+};
+
+const App = (props) => {
+  //Get variables from props
+  const {
+    searchField,
+    onSearchChange,
+    robots,
+    onGetRobots,
+    isPending,
+    error,
+  } = props;
 
   useEffect(() => {
-    //Using async/await
-    getRobots();
-
-    //Consuming promisses
-    // fetch("http://jsonplaceholder.typicode.com/users")
-    //   .then((res) => res.json())
-    //   .then((data) =>
-    //     setRobots(data);
-    //   )
-    //   .catch((error) => console.error(error));
+    onGetRobots();
   }, []);
 
-  const getRobots = async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      const data = await res.json();
-
-      setRobots(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const onSearchChange = (e) => {
-    setSearchfield(e.target.value);
-  };
-
   const dataFilter = (item) =>
-    item.name.toLowerCase().match(searchfield.toLowerCase()) && true;
+    item.name.toLowerCase().match(searchField.toLowerCase()) && true;
 
   const filteredRobots = robots.filter(dataFilter);
 
-  return !robots.length ? (
+  return isPending ? (
     <h1 className="f2">Loading...</h1>
   ) : (
     <div className="tc">
@@ -57,4 +58,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
