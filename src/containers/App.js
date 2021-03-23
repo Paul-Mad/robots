@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import SearchBox from "../components/SearchBox";
 import CardList from "../components/CardList";
@@ -26,14 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const App = (props) => {
   //Get variables from props
-  const {
-    searchField,
-    onSearchChange,
-    robots,
-    onGetRobots,
-    isPending,
-    error,
-  } = props;
+  const { searchField, onSearchChange, robots, onGetRobots, isPending } = props;
 
   useEffect(() => {
     onGetRobots();
