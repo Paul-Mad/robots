@@ -13,6 +13,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "register-service-worker": "^1.7.2",
     "tachyons": "^4.12.0",
     "thunks": "^4.9.6",
     "web-vitals": "^1.1.1"
