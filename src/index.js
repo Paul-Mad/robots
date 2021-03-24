@@ -9,7 +9,7 @@ import thunkMiddleWare from "redux-thunk";
 import "tachyons";
 import App from "./containers/App";
 import { searchRobots, getRobots } from "./reducers";
-import registerServiceWorker from "./registerServiceWorker";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 //The logger helps to identify action while building the app
 //const logger = createLogger();
@@ -26,4 +26,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-registerServiceWorker();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.unregister();
