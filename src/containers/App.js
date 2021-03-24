@@ -41,7 +41,7 @@ const App = (props) => {
     <h1 className="f2">Loading...</h1>
   ) : (
     <div className="tc">
-      <Header />
+      <Header className="f1" />
       <SearchBox onSearchChange={onSearchChange} />
       <Scroll>
         <Error>
