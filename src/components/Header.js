@@ -1,9 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class Header extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
-  }
+class Header extends PureComponent {
   render() {
     console.log("Header");
     return (
