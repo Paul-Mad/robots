@@ -1,0 +1,4 @@
+export const CHANGE_SEARCH_FIELD: string = "CHANGE_SEARCH_FIELD";
+export const LOAD_ROBOTS_PENDING: string = "LOAD_ROBOTS_PENDING";
+export const LOAD_ROBOTS_SUCCESS: string = "LOAD_ROBOTS_SUCCESS";
+export const LOAD_ROBOTS_FAILED: string = "LOAD_ROBOTS_FAILED";

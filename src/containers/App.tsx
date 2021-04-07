@@ -8,7 +8,28 @@ import "./App.css";
 import { setSearchField, getRobots } from "../actions";
 import Header from "../components/Header";
 
-const mapStateToProps = (state) => {
+export interface IRobot {
+  name: string;
+  id: number;
+  email: string;
+  username: string;
+}
+
+interface IAppProps {
+  searchField: string;
+  robots: Array<IRobot>;
+  isPending: boolean;
+  error: string;
+  onSearchChange: Function;
+  onGetRobots: Function;
+}
+
+interface IAppState {
+  searchRobots: { searchField: string };
+  getRobots: { robots: Array<IRobot>; isPending: boolean; error: any };
+}
+
+const mapStateToProps = (state: IAppState) => {
   return {
     searchField: state.searchRobots.searchField,
     robots: state.getRobots.robots,
@@ -17,25 +38,26 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onSearchChange: (event: React.SyntheticEvent<HTMLInputElement>) =>
+      dispatch(setSearchField(event.currentTarget.value)),
     onGetRobots: () => dispatch(getRobots()),
   };
 };
 
-const App = (props) => {
+const App = (props: IAppProps): JSX.Element => {
   //Get variables from props
   const { searchField, onSearchChange, robots, onGetRobots, isPending } = props;
 
-  useEffect(() => {
+  useEffect((): void => {
     onGetRobots();
   }, []);
 
-  const dataFilter = (item) =>
+  const dataFilter = (item: any) =>
     item.name.toLowerCase().match(searchField.toLowerCase()) && true;
 
-  const filteredRobots = robots.filter(dataFilter);
+  const filteredRobots: Array<IRobot> = robots.filter(dataFilter);
 
   return isPending ? (
     <h1 className="f2">Loading...</h1>

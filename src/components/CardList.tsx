@@ -1,10 +1,16 @@
 import React from "react";
 import Card from "./Card";
 
-const CardList = (props) => {
+import { IRobot } from "../containers/App";
+
+const CardList = ({
+  filteredRobots,
+}: {
+  filteredRobots: Array<IRobot>;
+}): JSX.Element => {
   return (
     <div>
-      {props.filteredRobots.map((user) => (
+      {filteredRobots.map((user) => (
         <Card
           key={user.id}
           id={user.id}

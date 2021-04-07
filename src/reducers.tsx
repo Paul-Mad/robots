@@ -7,7 +7,15 @@ import {
 
 const initialStateSearch = { searchField: "" };
 
-export const searchRobots = (state = initialStateSearch, action = {}) => {
+interface IAction {
+  type: string;
+  payload: any;
+}
+
+export const searchRobots = (
+  state = initialStateSearch,
+  action: IAction
+): object => {
   switch (action.type) {
     case CHANGE_SEARCH_FIELD:
       return Object.assign({}, state, { searchField: action.payload });
@@ -21,7 +29,10 @@ export const searchRobots = (state = initialStateSearch, action = {}) => {
 //getRobots THUNK
 const initialStateRobots = { isPending: false, robots: [], error: "" };
 
-export const getRobots = (state = initialStateRobots, action = {}) => {
+export const getRobots = (
+  state = initialStateRobots,
+  action: IAction
+): object => {
   switch (action.type) {
     case LOAD_ROBOTS_PENDING:
       return Object.assign({}, state, { isPending: true });

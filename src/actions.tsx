@@ -5,13 +5,13 @@ import {
   LOAD_ROBOTS_SUCCESS,
 } from "./constants";
 
-export const setSearchField = (text) => ({
+export const setSearchField = (text: string) => ({
   type: CHANGE_SEARCH_FIELD,
   payload: text,
 });
 
 //HOF
-export const getRobots = () => async (dispatch) => {
+export const getRobots = () => async (dispatch: any) => {
   try {
     dispatch({ type: LOAD_ROBOTS_PENDING });
 
@@ -20,6 +20,6 @@ export const getRobots = () => async (dispatch) => {
 
     dispatch({ type: LOAD_ROBOTS_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: LOAD_ROBOTS_FAILED, payload: error });
+    dispatch({ type: LOAD_ROBOTS_FAILED, payload: error.message });
   }
 };
